@@ -1,5 +1,5 @@
 $(function(){ // on dom ready
-
+var delaytime = 1 //use to change sim speed.
 var cy = cytoscape({
   container: document.getElementById('cy'),
 
@@ -8,8 +8,9 @@ var cy = cytoscape({
 
   style: cytoscape.stylesheet()
     .selector('node')
-      .css({
-        'content': 'data(id)'
+      .css({ //initial properties of the node
+        'label': 'data(id)',
+        'background-color':'#666'
       })
     .selector('edge')
       .css({
@@ -20,13 +21,13 @@ var cy = cytoscape({
       })
     .selector('.highlighted')
       .css({
-        'background-color': '#61bffc',
+        'background-color': '#FF0000',
         'line-color': '#61bffc',
         'target-arrow-color': '#61bffc',
         'transition-property': 'background-color, line-color, target-arrow-color',
-        'transition-duration': '0.5s'
+        'transition-duration': '0.01s'
       }),
-  
+
   elements: {
       nodes: [
         { data: { id: 'a' } },
@@ -34,40 +35,49 @@ var cy = cytoscape({
         { data: { id: 'c' } },
         { data: { id: 'd' } },
         { data: { id: 'e' } }
-      ], 
-      
+      ],
+
       edges: [
-        { data: { id: 'a"e', weight: 1, source: 'a', target: 'e' } },
-        { data: { id: 'ab', weight: 3, source: 'a', target: 'b' } },
-        { data: { id: 'be', weight: 4, source: 'b', target: 'e' } },
-        { data: { id: 'bc', weight: 5, source: 'b', target: 'c' } },
-        { data: { id: 'ce', weight: 6, source: 'c', target: 'e' } },
-        { data: { id: 'cd', weight: 2, source: 'c', target: 'd' } },
-        { data: { id: 'de', weight: 7, source: 'd', target: 'e' } }
+        //{ data: { id: 'a"e', weight: 0, source: 'a', target: 'e' } },
+        { data: { id: 'ab', weight: 0, source: 'a', target: 'b' } },
+        { data: { id: 'be', weight: 0, source: 'b', target: 'e' } },
+        { data: { id: 'bc', weight: 0, source: 'b', target: 'c' } },
+        { data: { id: 'ce', weight: 0, source: 'c', target: 'e' } },
+        { data: { id: 'cd', weight: 0, source: 'c', target: 'd' } },
+        { data: { id: 'de', weight: 0, source: 'd', target: 'e' } }
       ]
     },
-  
+
   layout: {
-    name: 'breadthfirst',
+    name: 'random',
     directed: true,
     roots: '#a',
     padding: 10
-  }
+  },
+  motionblur:true
 });
-  
+
 var bfs = cy.elements().bfs('#a', function(){}, true);
 
 var i = 0;
 var highlightNextEle = function(){
   if( i < bfs.path.length ){
     bfs.path[i].addClass('highlighted');
-  
     i++;
-    setTimeout(highlightNextEle, 1000);
+    setTimeout(highlightNextEle, delaytime);
+  }
+};
+i=0;
+var remove = function(){
+  if(i<bfs.path.length){
+    bfs.path[i].removeClass('highlighted');
+    i++;
+    setTimeout(remove,delaytime);
   }
 };
 
+
 // kick off first highlight
 highlightNextEle();
-
+remove();
 }); // on dom ready
