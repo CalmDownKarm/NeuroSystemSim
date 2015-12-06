@@ -22,19 +22,19 @@ var cy = cytoscape({
     .selector('.highlighted')
       .css({
         'background-color': '#FF0000',
-        'line-color': '#61bffc',
-        'target-arrow-color': '#61bffc',
+        'line-color': '#FF0000',
+        'target-arrow-color': '#FF0000',
         'transition-property': 'background-color, line-color, target-arrow-color',
         'transition-duration': '0.01s'
       }),
 
   elements: {
       nodes: [
-        { data: { id: 'a', weight:'excitor' } },
-        { data: { id: 'b', weight:'excitor' } },
-        { data: { id: 'c', weight:'excitor'} },
-        { data: { id: 'd', weight:'inhibitor' } },
-        { data: { id: 'e', weight:'inhibitor'} }
+        { data: { id: 'a', weight:'0' } },
+        { data: { id: 'b', weight:'0' } },
+        { data: { id: 'c', weight:'0'} },
+        { data: { id: 'd', weight:'1' } },
+        { data: { id: 'e', weight:'1'} }
       ],
 
       edges: [
@@ -57,21 +57,31 @@ var cy = cytoscape({
   motionblur:true
 });
 
-
 var run_sim = function(){
-  cy.nodes().forEach(function( ele ){
-    //console.log( ele.id() );
-    var str = "ele : "+ele.data('weight')+" "+ ele.incomers().id();
-    console.log(str);
-    ele.incomers().forEach(function (foo){
-      console.log(foo.data('weight'));
+  cy.nodes().forEach(function( ele ){//Pull each node
+    var output_line= 1;
+    if(ele.data('weight')==0){//Excitor
+              output_line = 1;
+    }
+    else {//Inhibitor
+        output_line = -1;
+    }
+    var node_sum=0
+    ele.incomers().forEach(function (foo){//sum the incoming edge weights
+          node_sum+=foo.data('weight');
     });
-
-
+    if(node_sum>=3){
+      ele.outgoers().forEach(function (bar){//set output weights
+        bar.data('weight',output_line);
+        console.log("fuck");
+        ele.addClass('highlighted');
+        bar.addClass('highlighted');
+      });
+    }
   });
 };
-var bfs = cy.elements().bfs('#a', function(){}, true);
-
+//var bfs = cy.elements().bfs('#a', function(){}, true);
+/*
 var i = 0;
 var highlightNextEle = function(){
   if( i < bfs.path.length ){
@@ -80,19 +90,7 @@ var highlightNextEle = function(){
     setTimeout(highlightNextEle, delaytime);
   }
 };
-/*i=0;
-
-var remove = function(){
-  if(i<bfs.path.length){
-    bfs.path[i].removeClass('highlighted');
-    i++;
-    setTimeout(remove,delaytime);
-  }
-};*/
-
-
-// kick off first highlight
-highlightNextEle();
+*/
+//highlightNextEle();
 run_sim();
-//remove();
 }); // on dom ready
