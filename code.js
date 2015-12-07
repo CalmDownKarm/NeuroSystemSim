@@ -73,9 +73,10 @@ var run_sim = function(){
     if(node_sum>=3){
       ele.outgoers().forEach(function (bar){//set output weights
         bar.data('weight',output_line);
-        console.log("fuck");
+      //  console.log("fuck");
         ele.addClass('highlighted');
         bar.addClass('highlighted');
+        cy.delay(delaytime);
       });
     }
   });
