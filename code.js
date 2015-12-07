@@ -1,5 +1,5 @@
 $(function(){ // on dom ready
-var delaytime = 100 //use to change sim speed.
+var delaytime = 10000 //use to change sim speed.
 var cy = cytoscape({
   container: document.getElementById('cy'),
 
@@ -38,13 +38,13 @@ var cy = cytoscape({
       ],
 
       edges: [
-        { data: { id: 'a"e', weight: 0, source: 'a', target: 'e' } },
-        { data: { id: 'ab', weight: 2, source: 'a', target: 'b' } },
-        { data: { id: 'be', weight: 3, source: 'b', target: 'e' } },
-        { data: { id: 'bc', weight: 4, source: 'b', target: 'c' } },
-        { data: { id: 'ce', weight: 5, source: 'c', target: 'e' } },
-        { data: { id: 'cd', weight: 6, source: 'c', target: 'd' } },
-        { data: { id: 'de', weight: 7, source: 'd', target: 'e' } }
+        { data: { id: 'a"e', weight: 1, source: 'a', target: 'e' } },
+        { data: { id: 'ab', weight: 1, source: 'a', target: 'b' } },
+        { data: { id: 'be', weight: 1, source: 'b', target: 'e' } },
+        { data: { id: 'bc', weight: 1, source: 'b', target: 'c' } },
+        { data: { id: 'ce', weight: 1, source: 'c', target: 'e' } },
+        { data: { id: 'cd', weight: 1, source: 'c', target: 'd' } },
+        { data: { id: 'de', weight: 1, source: 'd', target: 'e' } }
       ]
     },
 
@@ -60,11 +60,15 @@ var cy = cytoscape({
 var run_sim = function(){
   cy.nodes().forEach(function( ele ){//Pull each node
     var output_line= 1;
+    var node_color='red';
+
     if(ele.data('weight')==0){//Excitor
               output_line = 1;
+              node_color='magenta'
     }
     else {//Inhibitor
         output_line = -1;
+        node_color = 'red';
     }
     var node_sum=0
     ele.incomers().forEach(function (foo){//sum the incoming edge weights
@@ -74,9 +78,11 @@ var run_sim = function(){
       ele.outgoers().forEach(function (bar){//set output weights
         bar.data('weight',output_line);
       //  console.log("fuck");
-        ele.addClass('highlighted');
-        bar.addClass('highlighted');
-        cy.delay(delaytime);
+
+        ele.style('background-color',node_color);
+        bar.style('background-color',node_color);
+
+
       });
     }
   });
@@ -93,5 +99,5 @@ var highlightNextEle = function(){
 };
 */
 //highlightNextEle();
-run_sim();
+setInterval(run_sim, 3000);
 }); // on dom ready
