@@ -25,27 +25,119 @@ var cy = cytoscape({
         'line-color': '#FF0000',
         'target-arrow-color': '#FF0000',
         'transition-property': 'background-color, line-color, target-arrow-color',
-        'transition-duration': '0.01s'
+        'transition-duration': '1s'
+      })
+      .selector('.whatever').css({
+        'background-color':'magenta',
+        'transition-property': 'background-color',
+        'transition-duration': '1s'
       }),
 
   elements: {
       nodes: [
-        { data: { id: 'a', weight:'0' } },
-        { data: { id: 'b', weight:'0' } },
-        { data: { id: 'c', weight:'0'} },
-        { data: { id: 'd', weight:'1' } },
-        { data: { id: 'e', weight:'1'} }
+        { data: { id: '1', weight: '0' } },
+        { data: { id: '2', weight: '1' } },
+        { data: { id: '3', weight: '0' } },
+        { data: { id: '4', weight: '1' } },
+        { data: { id: '5', weight: '1' } },
+        { data: { id: '6', weight: '0' } },
+        { data: { id: '7', weight: '0' } },
+        { data: { id: '8', weight: '0' } },
+        { data: { id: '9', weight: '0' } },
+        { data: { id: '10', weight: '1' } },
+        { data: { id: '11', weight: '1' } },
+        { data: { id: '12', weight: '1' } },
+        { data: { id: '13', weight: '1' } },
+        { data: { id: '14', weight: '0' } },
+        { data: { id: '15', weight: '1' } },
+        { data: { id: '16', weight: '0' } },
+        { data: { id: '17', weight: '1' } },
+        { data: { id: '18', weight: '1' } },
+        { data: { id: '19', weight: '0' } },
+        { data: { id: '20', weight: '1' } },
+        { data: { id: '21', weight: '0' } },
+        { data: { id: '22', weight: '1' } },
+        { data: { id: '23', weight: '1' } },
+        { data: { id: '24', weight: '1' } },
+        { data: { id: '25', weight: '1' } },
+        { data: { id: '26', weight: '1' } },
+        { data: { id: '27', weight: '1' } },
+        { data: { id: '28', weight: '1' } },
+        { data: { id: '29', weight: '0' } },
+        { data: { id: '30', weight: '0' } },
+        { data: { id: '31', weight: '1' } },
+        { data: { id: '32', weight: '0' } },
+        { data: { id: '33', weight: '1' } },
+        { data: { id: '34', weight: '1' } },
+        { data: { id: '35', weight: '0' } },
+        { data: { id: '36', weight: '0' } },
+        { data: { id: '37', weight: '1' } },
+        { data: { id: '38', weight: '1' } },
+        { data: { id: '39', weight: '0' } },
+        { data: { id: '40', weight: '0' } },
+        { data: { id: '41', weight: '1' } },
+        { data: { id: '42', weight: '0' } },
+        { data: { id: '43', weight: '0' } },
+        { data: { id: '44', weight: '0' } },
+        { data: { id: '45', weight: '0' } },
+        { data: { id: '46', weight: '0' } },
+        { data: { id: '47', weight: '0' } },
+        { data: { id: '48', weight: '0' } },
+        { data: { id: '49', weight: '0' } },
+        { data: { id: '50', weight: '0' } },
+        { data: { id: '51', weight: '1' } },
+        { data: { id: '52', weight: '1' } },
+        { data: { id: '53', weight: '0' } },
+        { data: { id: '54', weight: '0' } },
+        { data: { id: '55', weight: '1' } },
+        { data: { id: '56', weight: '0' } },
+        { data: { id: '57', weight: '1' } },
+        { data: { id: '58', weight: '0' } },
+        { data: { id: '59', weight: '1' } },
+        { data: { id: '60', weight: '1' } },
+        { data: { id: '61', weight: '0' } },
+        { data: { id: '62', weight: '1' } },
+        { data: { id: '63', weight: '1' } },
+        { data: { id: '64', weight: '0' } },
+        { data: { id: '65', weight: '0' } },
+        { data: { id: '66', weight: '1' } },
+        { data: { id: '67', weight: '1' } },
+        { data: { id: '68', weight: '0' } },
+        { data: { id: '69', weight: '1' } },
+        { data: { id: '70', weight: '1' } },
+        { data: { id: '71', weight: '0' } },
+        { data: { id: '72', weight: '1' } },
+        { data: { id: '73', weight: '1' } },
+        { data: { id: '74', weight: '0' } },
+        { data: { id: '75', weight: '0' } },
+        { data: { id: '76', weight: '1' } },
+        { data: { id: '77', weight: '0' } },
+        { data: { id: '78', weight: '0' } },
+        { data: { id: '79', weight: '1' } },
+        { data: { id: '80', weight: '0' } },
+        { data: { id: '81', weight: '1' } },
+        { data: { id: '82', weight: '0' } },
+        { data: { id: '83', weight: '0' } },
+        { data: { id: '84', weight: '1' } },
+        { data: { id: '85', weight: '0' } },
+        { data: { id: '86', weight: '0' } },
+        { data: { id: '87', weight: '1' } },
+        { data: { id: '88', weight: '1' } },
+        { data: { id: '89', weight: '1' } },
+        { data: { id: '90', weight: '0' } },
+        { data: { id: '91', weight: '0' } },
+        { data: { id: '92', weight: '0' } },
+        { data: { id: '93', weight: '0' } },
+        { data: { id: '94', weight: '0' } },
+        { data: { id: '95', weight: '0' } },
+        { data: { id: '96', weight: '1' } },
+        { data: { id: '97', weight: '0' } },
+        { data: { id: '98', weight: '0' } },
+        { data: { id: '99', weight: '1' } },
+        { data: { id: '100', weight: '0' } }
       ],
 
-      edges: [
-        { data: { id: 'a"e', weight: 1, source: 'a', target: 'e' } },
-        { data: { id: 'ab', weight: 1, source: 'a', target: 'b' } },
-        { data: { id: 'be', weight: 1, source: 'b', target: 'e' } },
-        { data: { id: 'bc', weight: 1, source: 'b', target: 'c' } },
-        { data: { id: 'ce', weight: 1, source: 'c', target: 'e' } },
-        { data: { id: 'cd', weight: 1, source: 'c', target: 'd' } },
-        { data: { id: 'de', weight: 1, source: 'd', target: 'e' } }
-      ]
+
     },
 
   layout: {
@@ -78,9 +170,11 @@ var run_sim = function(){
       ele.outgoers().forEach(function (bar){//set output weights
         bar.data('weight',output_line);
       //  console.log("fuck");
-
-        ele.style('background-color',node_color);
-        bar.style('background-color',node_color);
+      //TODO:clear all the classses at ele
+        ele.addClass('whatever');
+        bar.addClass('highlighted');
+        //ele.style('background-color',node_color);
+        //bar.style('background-color',node_color);
 
 
       });
@@ -99,5 +193,5 @@ var highlightNextEle = function(){
 };
 */
 //highlightNextEle();
-setInterval(run_sim, 3000);
+run_sim();
 }); // on dom ready
